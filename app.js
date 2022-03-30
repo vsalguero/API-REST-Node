@@ -7,7 +7,7 @@ const dbConnect = require("./config/mongo");
 const app = express();
 
 //avoid compatibility problems with browsers
-app.use(cors);
+app.use(cors());
 
 const port = process.env.PORT;
 

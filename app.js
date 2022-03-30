@@ -11,7 +11,7 @@ app.use(cors());
 
 const port = process.env.PORT;
 
-app.use("/api", require("./routes/movies"));
+app.use("/api", require("./routes"));
 
 app.listen(port, () => {
     console.log(`App listen http://localhost:${port}`);

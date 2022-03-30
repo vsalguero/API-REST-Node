@@ -3,7 +3,7 @@ const router = express.Router();
 
 //TODO: http://localhost/movies GET, POST, DELETE, PUT
 
-router.get('/movies', (req, res) => {
+router.get('/', (req, res) => {
     const data = ["hola", "mundo"];
     res.send({data});
 });

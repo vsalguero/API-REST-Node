@@ -1,19 +1,10 @@
 const express = require("express");
-const multer = require("multer");
-
 const router = express.Router();
-
-/**
- * 
- */
+const uploadMiddleware = require("../utils/handleStorage");
+const {createItem} = require("../controllers/storage");
 
 
-
-/**
- * 
- */
-
-router.post("/", uploadMiddleware.single("myFile"), (req, res) =>{
+router.post("/", uploadMiddleware.single("myFile"), createItem, (req, res) =>{
     res.send({data: 1});
 });
 

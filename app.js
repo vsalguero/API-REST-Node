@@ -8,9 +8,10 @@ const app = express();
 
 //avoid compatibility problems with browsers
 app.use(cors());
-
 //for receive json post 
 app.use(express.json());
+
+app.use(express.static("storage"));
 
 const port = process.env.PORT;
 

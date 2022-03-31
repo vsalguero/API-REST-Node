@@ -1,5 +1,7 @@
 const { send } = require("express/lib/response");
-const {moviesModel} = require("../models/nosql/movies");
+const {storageModel} = require("../models/nosql/storages");
+
+const PUBLIC_URL = process.env.PUBLIC_URL;
 
 /**
  * Obtener un listado de la base de datos
@@ -8,7 +10,7 @@ const {moviesModel} = require("../models/nosql/movies");
  */
 
 const getItems = async (req, res) => {
-   const data = await moviesModel.find({});
+   const data = await storageModel.find({});
    res.send({data});
 }
 
@@ -29,8 +31,12 @@ const getItem = (req, res) => {
  */
 
 const createItem = async (req, res) => {
-    const {body} = req;
-    const data = await moviesModel.create(body);
+    const {body, file} = req;
+    const fileData = {
+        filename : file.filename,
+        url: `${PUBLIC_URL}/${file.filename}`
+    }
+    const data = await storageModel.create(fileData);
     res.send({data});
 }
 

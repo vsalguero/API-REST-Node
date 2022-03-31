@@ -9,6 +9,9 @@ const app = express();
 //avoid compatibility problems with browsers
 app.use(cors());
 
+//for receive json post 
+app.use(express.json());
+
 const port = process.env.PORT;
 
 app.use("/api", require("./routes"));

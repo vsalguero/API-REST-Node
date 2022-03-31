@@ -24,7 +24,7 @@ const MovieScheme = new mongoose.Schema(
             type: String,
         },
         date_release: {
-            type: Date,
+            type: String,
         },
         mediaId: {
             type: mongoose.Types.ObjectId,
@@ -38,6 +38,6 @@ const MovieScheme = new mongoose.Schema(
 
 //module.exports = mongoose.model("movies", MovieScheme);
 
-const Movies = mongoose.model( 'movies', MovieScheme);
+const moviesModel = mongoose.model( 'movies', MovieScheme);
 
-module.exports =  {Movies}
+module.exports =  {moviesModel}

@@ -4,11 +4,11 @@
  * @param {*} res 
  */
 
-const {Movies} = require("../models/nosql/movies");
+const { send } = require("express/lib/response");
+const {moviesModel} = require("../models/nosql/movies");
 
 const getItems = async (req, res) => {
-   const data = await Movies.find({});
-
+   const data = await moviesModel.find({});
    res.send({data});
 }
 
@@ -28,8 +28,10 @@ const getItem = (req, res) => {
  * @param {*} res 
  */
 
-const createItem = (req, res) => {
-    
+const createItem = async (req, res) => {
+    const {body} = req;
+    const data = await moviesModel.create(body);
+    res.send({data});
 }
 
 /**

@@ -1,5 +1,7 @@
+const { matchedData } = require("express-validator");
 const { send } = require("express/lib/response");
-const {moviesModel} = require("../models/nosql/movies");
+const { moviesModel } = require("../models/nosql/movies");
+const { handleHttpErrors } = require("../utils/handleErrors");
 
 /**
  * Obtener un listado de la base de datos
@@ -8,8 +10,12 @@ const {moviesModel} = require("../models/nosql/movies");
  */
 
 const getItems = async (req, res) => {
-   const data = await moviesModel.find({});
-   res.send({data});
+    try {
+        const data = await moviesModel.find({});
+        res.send({ data });
+    } catch (error) {
+        handleHttpErrors(res, 'Error in getItems movies');
+    }
 }
 
 /**
@@ -19,7 +25,7 @@ const getItems = async (req, res) => {
  */
 
 const getItem = (req, res) => {
-    
+
 }
 
 /**
@@ -29,9 +35,15 @@ const getItem = (req, res) => {
  */
 
 const createItem = async (req, res) => {
-    const {body} = req;
-    const data = await moviesModel.create(body);
-    res.send({data});
+    try {
+        
+        const body = matchedData(req);
+        const data = await moviesModel.create(body);
+        res.send({ data });
+    } catch (error) {
+        handleHttpErrors(res, 'Error in createItem movie');
+    }
+
 }
 
 /**
@@ -41,7 +53,7 @@ const createItem = async (req, res) => {
  */
 
 const updateItem = (req, res) => {
-    
+
 }
 
 /**
@@ -50,7 +62,7 @@ const updateItem = (req, res) => {
  * @param {*} res 
  */
 const deleteItem = (req, res) => {
-    
+
 }
 
-module.exports = {getItems, getItem, createItem, updateItem, deleteItem};
+module.exports = { getItems, getItem, createItem, updateItem, deleteItem };

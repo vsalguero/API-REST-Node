@@ -21,4 +21,4 @@ app.listen(port, () => {
     console.log(`App listen http://localhost:${port}`);
 });
 
-dbConnect();
+//dbConnect();

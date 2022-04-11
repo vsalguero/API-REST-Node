@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const dbConnect = () => {
-    const DB_URI = process.env.DB_URI;
+        const DB_URI = process.env.DB_URI;
     mongoose.connect(DB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -12,6 +12,7 @@ const dbConnect = () => {
             console.log("Error de conexión");
         }
     });
+    
 };
 
 module.exports = dbConnect;

@@ -4,7 +4,10 @@ const express = require("express");
 const cors = require("cors");
 const dbConnect = require("./config/mongo");
 
+
 const app = express();
+
+dbConnect();
 
 //avoid compatibility problems with browsers
 app.use(cors());
@@ -20,5 +23,3 @@ app.use("/api", require("./routes"));
 app.listen(port, () => {
     console.log(`App listen http://localhost:${port}`);
 });
-
-//dbConnect();

@@ -14,7 +14,8 @@ const getItems = async (req, res) => {
         const data = await moviesModel.find({});
         res.send({ data });
     } catch (error) {
-        handleHttpErrors(res, 'Error in getItems movies');
+        //handleHttpErrors(res, 'Error in getItems movies');
+        res.send({data: 0})
     }
 }
 
@@ -24,8 +25,15 @@ const getItems = async (req, res) => {
  * @param {*} res 
  */
 
-const getItem = (req, res) => {
-
+const getItem = async (req, res) => {
+   try {
+      //req = matchedData(req);
+      const id = req.params.id;
+      const data = await moviesModel.findById(id);
+      res.send({ data });
+   } catch (error) {
+       handleHttpErrors(res, "ERROR_GET_ITEM");
+   }
 }
 
 /**
@@ -35,13 +43,13 @@ const getItem = (req, res) => {
  */
 
 const createItem = async (req, res) => {
-    try {
-        
-        const body = matchedData(req);
+    try {       
+        //const {body} = matchedData(req);
+        const {body} = req;
         const data = await moviesModel.create(body);
         res.send({ data });
     } catch (error) {
-        handleHttpErrors(res, 'Error in createItem movie');
+        handleHttpErrors(res, `Error in createItem movie ${error}`);
     }
 
 }
@@ -52,8 +60,19 @@ const createItem = async (req, res) => {
  * @param {*} res 
  */
 
-const updateItem = (req, res) => {
-
+const updateItem = async(req, res) => {
+    try {       
+        //const {body} = matchedData(req);
+        const {body} = req;
+        const id = req.params.id;
+        console.log(body);
+        const data = await moviesModel.findOneAndUpdate(
+            id, body
+        );
+        res.send({ data });
+    } catch (error) {
+        handleHttpErrors(res, `Error updating movie ${error}`);
+    }
 }
 
 /**
@@ -61,8 +80,15 @@ const updateItem = (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const deleteItem = (req, res) => {
-
+const deleteItem = async (req, res) => {
+    try {
+        //req = matchedData(req);
+        const id = req.params.id;
+        const data = await moviesModel.deleteOne({_id: id});
+        res.send({ data });
+     } catch (error) {
+         handleHttpErrors(res, `Error deleting movie ${error}`);
+     }
 }
 
 module.exports = { getItems, getItem, createItem, updateItem, deleteItem };

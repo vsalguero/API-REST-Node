@@ -4,6 +4,7 @@ const {
   validatorCreateItem,
   validatorGetItem,
 } = require("../validators/movies");
+const authMiddleware = require("../middleware/session");
 const {
   getItems,
   getItem,
@@ -17,7 +18,7 @@ const {
 /**
  * Get list
  */
-router.get("/", getItems);
+router.get("/", authMiddleware, getItems);
 
 /**
  * Get list

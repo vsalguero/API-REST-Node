@@ -1,18 +1,13 @@
 const express = require("express");
-const {encrypt, compare} = require("../utils/handlePassword");
-const {userModel} = require("../models/nosql/users");
-const {tokenSign } = require("../utils/handle.Jwt");
 const router = express.Router();
-const loginController = require("../controllers/auth");
+const { registerController, loginController } = require("../controllers/auth.js");
 
 
 /**
  * Register url
  */
-router.post("/register", loginController);
+router.post("/register", registerController);
 
-router.post("/login", (req, res) => {
-
-});
+router.post("/login", loginController);
 
 module.exports = router;

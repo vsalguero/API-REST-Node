@@ -12,7 +12,8 @@ const { handleHttpErrors } = require("../utils/handleErrors");
 const getItems = async (req, res) => {
   try {
     const data = await moviesModel.find({});
-    res.send({ data });
+    const user = req.user;
+    res.send({ user, data });
   } catch (error) {
     //handleHttpErrors(res, 'Error in getItems movies');
     res.send({ data: 0 });

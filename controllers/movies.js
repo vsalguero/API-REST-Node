@@ -30,7 +30,7 @@ const getItem = async (req, res) => {
   try {
     //req = matchedData(req);
     const id = req.params.id;
-    const data = await moviesModel.findById(id);
+    const data = await moviesModel.findOneData(id);
     res.send({ data });
   } catch (error) {
     handleHttpErrors(res, "ERROR_GET_ITEM");

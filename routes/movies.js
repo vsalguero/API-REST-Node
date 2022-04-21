@@ -5,6 +5,7 @@ const {
   validatorGetItem,
 } = require("../validators/movies");
 const authMiddleware = require("../middleware/session");
+const {checkRol} = require("../middleware/rol");
 const {
   getItems,
   getItem,
@@ -13,34 +14,35 @@ const {
   deleteItem,
 } = require("../controllers/movies.js");
 
+
 //TODO: http://localhost/movies GET, POST, DELETE, PUT
 
 /**
  * Get list
  */
-router.get("/", authMiddleware, getItems);
+router.get("/", getItems);
 
 /**
  * Get list
  */
-router.get("/:id", getItem);
+router.get("/:id", authMiddleware, checkRol(["admin"]), getItem);
 
 /**
  * Create a new movie
  */
 
-router.post("/", createItem);
+router.post("/", authMiddleware, createItem);
 
 /**
  * Actualizar un registro
  */
 
-router.put("/:id", updateItem);
+router.put("/:id", authMiddleware, updateItem);
 
 /**
  * Actualizar un registro
  */
 
-router.delete("/:id", deleteItem);
+router.delete("/:id", authMiddleware, deleteItem);
 
 module.exports = router;

@@ -10,7 +10,7 @@ const MovieList = () => {
   const navigate = useNavigate();
 
   const loadMovies = async () => {
-    const response = await fetch(`/movies`);
+    const response = await fetch(`http://localhost:4000/movies`);
     const data = await response.json();
     console.log(data);
     setMovies(data);
@@ -27,10 +27,10 @@ const MovieList = () => {
         confirmButtonText: 'Yes!'
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`/movie/${id}`, {
+          fetch(`http://localhost:4000/movie/${id}`, {
             method: "DELETE",
           });
-          setMovies(movies.filter((movie) => movie.id != id));
+          setMovies(movies.filter((movie) => movie.id !== id));
           Swal.fire(
             'Deleted!',
             'Libro eliminado.',

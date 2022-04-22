@@ -29,7 +29,7 @@ const UserForm = () => {
   const params = useParams();
 
   const loadUser = async (id) => {
-    const result = await fetch(`/users/${id}`);
+    const result = await fetch(`http://localhost:4000/users/${id}`);
     const data = await result.json();
     setUser({
       name: data.name,
@@ -56,7 +56,7 @@ const UserForm = () => {
     setLoading(true);
     if (editing) {
       //update the data
-      await fetch(`/users/${params.id}`, {
+      await fetch(`http://localhost:4000/users/${params.id}`, {
         method: "PUT",
         body: JSON.stringify(user),
         headers: { "Content-Type": "application/json" },
@@ -70,7 +70,7 @@ const UserForm = () => {
       navigate("/users/list");
     } else {
       //create a new User
-      const res = await fetch(`/register`, {
+      const res = await fetch(`http://localhost:4000/auth/register`, {
         method: "POST",
         body: JSON.stringify(user),
         headers: { "Content-Type": "application/json" },

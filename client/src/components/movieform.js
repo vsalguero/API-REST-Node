@@ -26,7 +26,7 @@ const MovieForm = () => {
   const params = useParams();
 
   const loadMovie = async (id) => {
-    const result = await fetch(`/movies/${id}`);
+    const result = await fetch(`http://localhost:4000/movies/${id}`);
     const data = await result.json();
     setmovie({
       name: data.name,
@@ -54,7 +54,7 @@ const MovieForm = () => {
     setLoading(true);
     if (editing) {
       //update the data
-      await fetch(`/movies/${params.id}`, {
+      await fetch(`http://localhost:4000/movies/${params.id}`, {
         method: "PUT",
         body: JSON.stringify(movie),
         headers: { "Content-Type": "application/json" },
@@ -69,7 +69,7 @@ const MovieForm = () => {
       navigate("/movies/list");
     } else {
       //create a new movie
-      const res = await fetch(`/movies`, {
+      const res = await fetch(`http://localhost:4000/movies`, {
         method: "POST",
         body: JSON.stringify(movie),
         headers: { "Content-Type": "application/json" },

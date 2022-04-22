@@ -8,7 +8,7 @@ const UserList = () => {
   const navigate = useNavigate();
 
   const loadUsers = async () => {
-    const response = await fetch(`/users`);
+    const response = await fetch(`http://localhost:4000/users`);
     const data = await response.json();
     console.log(data);
     setUsers(data);
@@ -16,7 +16,7 @@ const UserList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`/users/${id}`, {
+      await fetch(`http://localhost:4000/users/${id}`, {
         method: "DELETE",
       });
       setUsers(users.filter((user) => user.id !== id));

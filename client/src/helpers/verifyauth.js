@@ -6,7 +6,7 @@ export function requireAuth(navigate){
 
 export function verifyAuth (navigate){
     if(sessionStorage.getItem('jwtToken')) {
-       navigate("books/list");
+       navigate("movies/list");
     }
     // stay on this route since the user is not authenticated
 }

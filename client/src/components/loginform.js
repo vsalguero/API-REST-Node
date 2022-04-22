@@ -31,7 +31,7 @@ const LoginForm = () => {
   //Login request
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch(`/login`, {
+    await fetch(`http://localhost:4000/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const LoginForm = () => {
       //login successfully!
       //create session with the token
       sessionStorage.setItem("jwtToken", data.token);
-      navigate("books/list");
+      navigate("movies/list");
     })
       .catch((err) => {
         console.log();

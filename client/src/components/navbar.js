@@ -14,7 +14,7 @@ const NavBar = () => {
 
   //logout function
   const logout = async () => {
-    let result = await fetch(`/logout`,
+    let result = await fetch(`http://localhost:4000/logout`,
       {
         method: "GET",
         headers: {
@@ -41,7 +41,7 @@ const NavBar = () => {
             {sessionStorage.getItem('jwtToken') &&
               <Button
                 variant="contained"
-                onClick={() => navigate("books/new")}
+                onClick={() => navigate("movies/new")}
                 disableElevation
               >
                 New Book
@@ -50,7 +50,7 @@ const NavBar = () => {
             {sessionStorage.getItem('jwtToken') &&
               <Button
                 variant="contained"
-                onClick={() => navigate("books/list")}
+                onClick={() => navigate("movies/list")}
                 disableElevation
               >
                 List of Books

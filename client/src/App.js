@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Container } from "@mui/material";
+import MovieForm from "./components/movieform";
+import MovieList from "./components/movielist";
+import UserForm from "./components/userform";
+import UserList from "./components/userlist";
+import Menu from "./components/navbar";
+import LoginForm from "./components/loginform";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Menu />
+      <Container>
+        <Routes>
+          <Route path="/" element={<LoginForm />} />
+          <Route path="/movies/new" element={<MovieForm />} />
+          <Route path="/movies/list" element={<MovieList />} />
+          <Route path="/users/new" element={<UserForm />} />
+          <Route path="/movies/:id/edit" element={<MovieForm />} />
+          <Route path="/users/:id/edit" element={<UserForm />} />
+          <Route path="/users/list" element={<UserList />} />
+        </Routes>
+      </Container>
+    </BrowserRouter>
   );
 }
 
